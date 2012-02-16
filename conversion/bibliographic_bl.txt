@@ -1,0 +1,143 @@
+#mapping from MARC to RDF
+#leader, 001, 006, 007 and some 008 mappings handled in script
+#format = field number, subfields (all if blank), RDF predicate, code to indicate what "type" of thing it is
+#L=Language, X=Country, D=Dewey number, P=Person, I=Institution, C=Conference, R=generic triple with text label, O=Generic triple, plain text
+#Code dictates which subroutine is used to process the field
+#predicate namespaces are expanded using namespaces.txt
+008;|dcterms:language|L
+008;|RDVocab.info:ElementsplaceOfPublication|X
+010;|dcterms:identifier|O
+015;|dcterms:identifier|O
+020;a|dcterms:identifier|O
+020;a|bibo:isbn|O
+082;a2|dcterms:subject|D
+100;abcdgjqu|dcterms:creator|P
+110;abcdgnu|dcterms:creator|I
+111;acdegnqu|dcterms:creator|C
+130;adfgklmnoprst|dcterms:alternative|O
+240;adfgklmnoprs|dcterms:alternative|O
+245;abnp|dcterms:title|O
+250;a|isbd:P1008|O
+260;a|isbd:P1016|O
+260;b|dcterms:publisher|R
+260;c|dcterms:created|O
+300;a|dcterms:extent|R
+#for 440-490, first entry picks up $a as controlled term
+#second entry picks up more subfields as descriptive label
+#440 is deprecated but included for backwards compatability
+440;a|dcterms:isPartOf|R
+440;av|dcterms:description|O
+#490 only picked up if no 8XX (handled in script)
+490;a|dcterms:isPartOf|R
+490;av|dcterms:description|O
+500;|dcterms:description|O
+501;|dcterms:description|O
+502;|dcterms:description|O
+503;|dcterms:description|O
+504;|dcterms:description|O
+505;agtr|dcterms:tableOfContents|O
+506;ad|dcterms:accessRights|R
+507;|dcterms:description|O
+508;|dcterms:description|O
+510;a|dcterms:isReferencedBy|R
+511;|dcterms:description|O
+513;|dcterms:description|O
+514;|dcterms:description|O
+515;|dcterms:description|O
+516;a|dcterms:format|R
+518;|dcterms:description|O
+520;ab|dcterms:abstract|O
+521;a|dcterms:audience|R
+522;|dcterms:description|O
+524;|dcterms:description|O
+525;|dcterms:description|O
+526;|dcterms:description|O
+530;|dcterms:description|O
+533;|dcterms:description|O
+534;|dcterms:description|O
+535;|dcterms:description|O
+536;|dcterms:description|O
+538;a|dcterms:requires|R
+540;ad|dcterms:accessRights|R
+541;|dcterms:description|O
+542;|dcterms:description|O
+544;|dcterms:description|O
+545;|dcterms:description|O
+546;a|isbd:P1074|O
+547;|dcterms:description|O
+550;|dcterms:description|O
+552;|dcterms:description|O
+555;|dcterms:description|O
+556;|dcterms:description|O
+561;|dcterms:description|O
+562;|dcterms:description|O
+563;|dcterms:description|O
+565;|dcterms:description|O
+567;|dcterms:description|O
+580;|dcterms:description|O
+581;|dcterms:description|O
+583;|dcterms:description|O
+584;|dcterms:description|O
+585;|dcterms:description|O
+586;|dcterms:description|O
+588;|dcterms:description|O
+590;|dcterms:description|O
+591;|dcterms:description|O
+592;|dcterms:description|O
+593;|dcterms:description|O
+594;|dcterms:description|O
+595;|dcterms:description|O
+596;|dcterms:description|O
+597;|dcterms:description|O
+598;|dcterms:description|O
+599;|dcterms:description|O
+#for 600-611, picked up as people and subjects
+#hence dual entries
+600;abcdgjqu|dcterms:subject|P
+600;abcdgjqu|dcterms:subject|S
+610;abcdgnu|dcterms:subject|I
+610;|dcterms:subject|S
+611;acdegnqu|dcterms:subject|C
+611;|dcterms:subject|S
+#650-651 handled differently depending on second ind
+#handled internally in script
+650;|dcterms:subject|S
+651;|dcterms:subject|S
+651;a|dcterms:spatial|S
+653;a|dcterms:subject|S
+662;a|dcterms:spatial|S
+#for 700-711, treated differently depending on presence of $t
+#hence dual entries - either/or handled in script
+700;abcdgjqu|dcterms:contributor|P
+700;abcdgjqu|dcterms:relation|P
+710;abcdgnu|dcterms:contributor|I
+710;abcdfghklmnoprstu|dcterms:relation|I
+711;acdegnqu|dcterms:contributor|C
+711;acdefghklnpqstu|dcterms:relation|C
+730;adfghklmnoprst|dcterms:relation|R
+760;abcdhmnst|dcterms:isPartOf|R
+762;abcdhkmnpst|dcterms:relation|R
+765;abcdhkmnpst|dcterms:relation|R
+767;abcdhkmnpst|dcterms:relation|R
+770;abcdhkmnpst|dcterms:relation|R
+772;abcdhkmnpst|dcterms:relation|R
+773;abdhkmnpqst|dcterms:isPartOf|R
+774;abcdhkmnst|dcterms:hasPart|R
+775;abcdefhkmnst|dcterms:hasVersion|R
+776;abcdhkmnst|dcterms:hasFormat|R
+777;abcdhkmnpst|dcterms:relation|R
+780;abcdhkmnst|dcterms:replaces|R
+785;abcdhkmnst|dcterms:isReplacedBy|R
+786;abcdhkmnpst|dcterms:relation|R
+787;abcdhkmnpst|dcterms:relation|R
+#for 800-830, first entry picks up $a as controlled term
+#second entry picks up more subfields as descriptive label
+800;adtfnp|dcterms:isPartOf|R
+800;abcdfgklmnopqrstuv|dcterms:description|O
+810;anpft|dcterms:isPartOf|R
+810;abcdfgjklmnoprstuv|dcterms:description|O
+811;anpft|dcterms:isPartOf|R
+811;acdefgjklnpqrstuv|dcterms:description|O
+830;anpft|dcterms:isPartOf|R
+830;abcdfgklmnoprstv|dcterms:description|O
+856;3u|dcterms:identifier|O
