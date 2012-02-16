@@ -1,0 +1,84 @@
+Comet RDF data service for libraries - bare bones setup instructions
+--------------------------------------------------------------------
+Built with the ARC2 library https://github.com/semsol/arc2/wiki and ARC2 starter pack https://github.com/tuukka/arc2-starter-pack
+(both included)
+Ed Chamberlain, Cambridge University Library 2011 - licensed under the GPL. 
+Code is provided 'as is' with no firm assurance of support or functionality. May need substantial alteration to work
+
+Knowledge of PHP, Apache and MYSQL is required. Some understanding of RDF, RDF stores and the ARC2 codebase is also helpful. 
+
+
+I - Install
+-----------
+1) Copy all PHP in this directory into a PHP enabled web server. Ensure Mod_rewrite is enabled on the apache server for the directory and sub driectories.
+PHP command line interface may need to be installed
+
+
+II - Database setup
+------------------
+1) Create a database and corresponding user for MYSQL. Enter server, user and database details details in config.php.
+2) Don't create and tables yet, although SQL to do so is in /comet directory. 
+3) Load up index.php, tables should be generated automatically. 
+
+
+III- Load some data
+-------------------
+1) Load some RDF. IF you don't have any, try using the perl script available at http://data.lib.cam.ac.uk/datasets.php to create some from MARC. Remember to alter base URIs to match your intended site. 
+2) At the server command line, go to the web directory and type using a sample of triples or other RDF and a suitable name for the graph represneting the dataset:
+
+./cli.php "LOAD <file:////var/www/data/sample.nt> INTO <http://your.lib.ac.uk/context/dataset/bib>" >> load_log.txt
+
+3) revisit index.php - all being well used properties should display
+
+4) Go to endpoint.php and try a sample SPARQL query suggested in the box
+
+Alternatively, the site can use an external or existing datastore with an Endpoint. Replace the store config array and object in  config.php with a remoteStore
+object. Further details on the Arc2 documentation. 
+
+https://github.com/semsol/arc2/wiki/Remote-Stores-and-Endpoints
+
+
+IV. - Other useful data management commands
+--------------------------------------------
+delete a graph
+./cli.php "DELETE FROM <http://your.lib.ac.uk/context/dataset/bib>"
+
+delete all triples attached to a graph
+./cli.php "DELETE FROM <http://your.lib.ac.uk/context/dataset/bib>  {?s ?p ?o.}"
+
+delete triples matching a specific SPARQL query
+./cli.php "DELETE FROM <http://your.lib.ac.uk/context/dataset/bib>  {?s  <http://www.w3.org/2004/02/skos/core#broader> ?o.}"
+
+More commands detailed here:
+https://github.com/semsol/arc2/wiki/Using-ARC%27s-RDF-Store
+
+These can all be run at Command line. They can also be enabled for use on the public sparql endpoint by editing config.php
+
+
+V) Edit .htaccess file to match the URI's in your RDF
+------------------------------------------------------
+1) This is required to pass URI's to the comet.php application classes, which can in turn render the RDF in the required format
+2) This may require some knowledge of mod_rewrite - See this blog post for some pointers
+http://cul-comet.blogspot.com/2011/05/small-but-fiddly-win-for-uris.html
+
+
+VI) - Test other stuff
+----------------------
+1) Go to a record URI - ensure HTML displays ok. Try following links and seeing what is attached via the 'View entries related to this' link.
+2) With a record page, try appending the URI with .xml, .json, .rdf in your browser
+3) Try a content specific request  curl -H "Accept: application/rdf+xml" http://data.lib.cam.ac.uk/id/entry/cul_comet_pddl_4589705
+4) Try a label match at /label/Dogs - see if your page is redirected to the right URI. mod_rewrite may need some work if not.
+5) Modify and run enricher.php to add library of congress subject links to subject nodes
+
+
+
+File overview
+-----------------
+/arc/ - arc2 codebase
+/comet/comet.php - container class with functionality to query datastore and return requested content. Also a few other tricks
+/includes/ - css header and footer helpers
+index.php - home page with sample query and code
+endpoint.php - generic SPARQL endpoint
+label.php, record.php, results.php - Takes URI's or labels as parameters (from mod_rewrite, passes to comet.php function and returns corresponding data)
+cli.php - enables command line querying and control of rdfstore
+enricher.php a sample script to find subject URI's and match their labels against id.loc.gov. Corresponding triples are then written back to the RDf store!
