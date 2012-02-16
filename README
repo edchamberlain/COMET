@@ -1,12 +1,38 @@
-Comet RDF data service for libraries - bare bones setup instructions
---------------------------------------------------------------------
-Built with the ARC2 library https://github.com/semsol/arc2/wiki and ARC2 starter pack https://github.com/tuukka/arc2-starter-pack
-(both included)
+
+Comet project complete codebase
+----------------------------
+---------------------------
 Ed Chamberlain, Cambridge University Library 2011 - licensed under the GPL. 
 Code is provided 'as is' with no firm assurance of support or functionality. May need substantial alteration to work
 
+
+Perl based Marc21 to RDF triples conversion utility
+-----------------------------------------------------
+- Found in /analysis. A standalone tool designed to analyse Marc21 records and assess origin through identifier field codes. See the readme file in that directory for more details.
+
+Perl based Arc21 to RDF publishing tool
+---------------------------------------------------
+ -Found in /conversion. features extensive CSV based customization for vocal and graph output. See the readme file in that directory for more details. Work by Huw Jones
+
+
+/ PHP/MYSQL Comet RDF data service for libraries - bare bones setup instructions
+--------------------------------------------------------------------
+Built with the ARC2 library https://github.com/semsol/arc2/wiki and ARC2 starter pack https://github.com/tuukka/arc2-starter-pack
+(both included)
+
 Knowledge of PHP, Apache and MYSQL is required. Some understanding of RDF, RDF stores and the ARC2 codebase is also helpful. 
 
+
+Overview
+-----------------
+/arc/ - arc2 codebase
+/comet/comet.php - container class with functionality to query datastore and return requested content. Also a few other tricks
+/includes/ - css header and footer helpers
+index.php - home page with sample query and code
+endpoint.php - generic SPARQL endpoint
+label.php, record.php, results.php - Takes URI's or labels as parameters (from mod_rewrite, passes to comet.php function and returns corresponding data)
+cli.php - enables command line querying and control of rdfstore
+enricher.php a sample script to find subject URI's and match their labels against id.loc.gov. Corresponding triples are then written back to the RDf store!
 
 I - Install
 -----------
@@ -23,8 +49,8 @@ II - Database setup
 
 III- Load some data
 -------------------
-1) Load some RDF. IF you don't have any, try using the perl script available at http://data.lib.cam.ac.uk/datasets.php to create some from MARC. Remember to alter base URIs to match your intended site. 
-2) At the server command line, go to the web directory and type using a sample of triples or other RDF and a suitable name for the graph represneting the dataset:
+1) Load some RDF. IF you don't have any, try using the perl script in  / analysis to create some from MARC. Remember to alter base URIs to match your intended site. 
+2) At the server command line, go to the web directory and type using a sample of triples or other RDF and a suitable name for the graph representing the dataset:
 
 ./cli.php "LOAD <file:////var/www/data/sample.nt> INTO <http://your.lib.ac.uk/context/dataset/bib>" >> load_log.txt
 
@@ -61,7 +87,6 @@ V) Edit .htaccess file to match the URI's in your RDF
 2) This may require some knowledge of mod_rewrite - See this blog post for some pointers
 http://cul-comet.blogspot.com/2011/05/small-but-fiddly-win-for-uris.html
 
-
 VI) - Test other stuff
 ----------------------
 1) Go to a record URI - ensure HTML displays ok. Try following links and seeing what is attached via the 'View entries related to this' link.
@@ -71,14 +96,3 @@ VI) - Test other stuff
 5) Modify and run enricher.php to add library of congress subject links to subject nodes
 
 
-
-File overview
------------------
-/arc/ - arc2 codebase
-/comet/comet.php - container class with functionality to query datastore and return requested content. Also a few other tricks
-/includes/ - css header and footer helpers
-index.php - home page with sample query and code
-endpoint.php - generic SPARQL endpoint
-label.php, record.php, results.php - Takes URI's or labels as parameters (from mod_rewrite, passes to comet.php function and returns corresponding data)
-cli.php - enables command line querying and control of rdfstore
-enricher.php a sample script to find subject URI's and match their labels against id.loc.gov. Corresponding triples are then written back to the RDf store!
