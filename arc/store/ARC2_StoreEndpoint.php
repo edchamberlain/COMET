@@ -911,8 +911,9 @@ class ARC2_StoreEndpoint extends ARC2_Store {
     return '
     	<head>
     		<title>' . $this->getHTMLDocTitle() . '</title>
-    		<link rel="stylesheet" href="skeleton/stylesheets/skeleton.css">
-                <link rel="stylesheet" href="skeleton/stylesheets/layout.css">
+                <link rel="stylesheet" href="skeleton/stylesheets/base.css">
+    		<link rel="stylesheet" href="skeleton/stylesheets/skeleton.css" />
+                <link rel="stylesheet" href="skeleton/stylesheets/layout.css" />
                 <style type="text/css">
         ' . $this->getHTMLDocCSS() . '
     		</style>
@@ -997,6 +998,7 @@ class ARC2_StoreEndpoint extends ARC2_Store {
   function getHTMLDocBody() {
     return '
     	<body>
+        <div class="container">
         <h1>' . $this->getHTMLDocHeading() . '</h1>
         <div class="intro">
           <p>
@@ -1013,6 +1015,7 @@ class ARC2_StoreEndpoint extends ARC2_Store {
         </div>
         ' . $this->getHTMLDocForm() .'
         ' . ($this->p('show_inline') ? $this->query_result : '') . '
+        </div>
     	</body>
     ';
   }
