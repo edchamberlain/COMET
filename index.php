@@ -12,8 +12,11 @@
 
 <?php include 'includes/header.php';?>
 
-<div class="main">
-   <p>Welcome page text here</p>
+<div class="container">
+		<div class="sixteen columns">
+                  
+                  
+   <p>This service is a work in progress. View the <a href="http://ioeoemuk.wordpress.com/">project blog</a> for more information.</p>
    <?php
 include_once(dirname(__FILE__).'/config.php');
 $result = $store->query("SELECT DISTINCT ?property WHERE { ?subject ?property ?object . }");
@@ -34,11 +37,11 @@ if ($rows) {
 } else {
     print "<strong>The ARC2 triple store is currently empty.\n";
     print "Please load some data first.</strong>";
-}
+} 
 
 
 ?>
-</div>
+
 <?php include 'includes/footer.php';?>
 </div>
 </body>

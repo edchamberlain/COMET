@@ -33,12 +33,19 @@
             }
             
             i {
-               font-style: italic; 
+               font-style: italic;
+               font-weight: bold;
             }
             
             #footer {
-                border-top: 2px solid grey;
-                padding: 10px; 
+               
+                padding: 10px;
+                margin-top 10px;
+            }
+            
+            h5 {
+                padding-top: 10px;
+                
             }
             
             </style>
