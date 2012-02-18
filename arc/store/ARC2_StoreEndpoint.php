@@ -911,9 +911,13 @@ class ARC2_StoreEndpoint extends ARC2_Store {
     return '
     	<head>
     		<title>' . $this->getHTMLDocTitle() . '</title>
-    		<style type="text/css">
+    		<link rel="stylesheet" href="skeleton/stylesheets/skeleton.css">
+                <link rel="stylesheet" href="skeleton/stylesheets/layout.css">
+                <style type="text/css">
         ' . $this->getHTMLDocCSS() . '
     		</style>
+                
+                
     	</head>
     ';
   }
@@ -927,7 +931,7 @@ class ARC2_StoreEndpoint extends ARC2_Store {
   }
   
   function getHTMLDocCSS() {
-    $default = '
+   /* $default = '
       body {
         font-size: 14px;
       	font-family: Trebuchet MS, Verdana, Geneva, sans-serif;
@@ -985,7 +989,8 @@ class ARC2_StoreEndpoint extends ARC2_Store {
         padding: 5px;
         background-color: #fcfcfc;
       }
-    ';
+    ';*/
+   $default = '';
     return $this->v('endpoint_css', $default, $this->a);
   }
   
