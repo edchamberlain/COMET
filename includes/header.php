@@ -1,7 +1,7 @@
 <div id="header">
-    <h2>COMET RDF publishing site</h2>
+    <h2>Open Education RDF service</h2>
     
-<p>header code inc. nav links in includes/header.php, css links in includes/css.php</p>
+<p>The Institute of Education RDF publishing testbed  - Open Eucation project, funded by the JISc infrastructure for Resource Discovery Programme.</p>
 </div>
 
 <div id="nav">

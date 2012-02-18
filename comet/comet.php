@@ -262,7 +262,8 @@ public function  genHTMLHeader() {
     <title>library open data site</title>';
       include 'includes/css.php'; 
      
-     print '</head><body class="home"><div class="container">';
+     print '</head><body class="home">
+     <div class="container">';
      include 'includes/header.php'; 
 }
    
@@ -270,8 +271,6 @@ public function  genHTMLHeader() {
 ###### Generate HTML results display to show relationships between records 
      public function genHTMLResultsDisplayFull($results, $uri) {
         
-      print '<div class="grid_20">';
-
       if ($results) {
          asort($results);
           print "<br/><h5>Entries that link to: $uri </h5><br/>";    
@@ -303,7 +302,7 @@ public function  genHTMLHeader() {
            print '<input type="submit" value="Try query" style="border: 2px solid #cccccc; margin-left: 5px;" />';
            print '<input type="hidden" id="output" name="output" value="htmltab" />';
            print '<input type="hidden" id="show_inline" name="show_inline" value="1" />';
-           print '</form></div>';
+           print '</form>';
        
       }
 } 
@@ -311,13 +310,15 @@ public function  genHTMLHeader() {
 
 # Generate HTML for main body page ...     
 public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
-  print '<div class="container">';
+
     
       if ($result) {
         
 
 
-          print "<table class=\"record \">";
+          print "<div class=\"sixteen columns clearfix\">
+          <div class=\"ten columns alpha\">
+          <table class=\"record \">";
          
           print "<tr><th colspan=\"2\">Entries for <a href='$uri'>$uri</a> as a subject:</th></tr>";
           print "<tr><th>Predicate</th><th>Object</th></tr>";
@@ -385,7 +386,8 @@ public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
         
              
           print '</div>';
-          print '<div>';
+          print  '<div class="six columns omega">';
+          
           print "<br/><p><b>RDF formats:</b></p><ul>";
           print '<li><a href="'. $uri.'.nt">triples (nt)</a></li>';
           print '<li><a href="'. $uri.'.json">RDF/JSON</a></li>';
@@ -407,11 +409,11 @@ public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
                        print '</ul>';
                        } else {
                       // print '<p><a href="/endpoint.php?query=SELECT+*+WHERE+{%0D%0A++{+%3Fs+%3Fp+<' . $uri. '>+.+}%0D%0A}%0D%0ALIMIT+1000&output=htmltab&jsonp=&key=&show_inline=1">Query every entry that links to this</a></p>';
-                      
-                       print "<p><b><a href=\"/results.php?uri=$uri\">View entries related to this</a></b></p>";
-                       print "</div>"; // end grid_5 omega
-                       }
                       */
+       print "<p><b><a href=\"/results.php?uri=$uri\">View entries related to this</a></b></p>";
+       print "</div>"; // end grid_5 omega
+                      # }
+                      
            
       } else {
           print "<h1>404 response</h1><p><strong>No entries found for $uri</strong></p>";
@@ -424,8 +426,9 @@ public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
  
  // html footer
    public function  genHTMLFooter() {  
-   print '</div>'; // End wrapper
+ 
     include 'includes/footer.php';
+    print '</div>';
     print '</body>';
     print '</html>';
     }

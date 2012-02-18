@@ -1,7 +1,48 @@
 
-<link rel="stylesheet" href="skeleton/stylesheets/base.css">
-	<link rel="stylesheet" href="skeleton/stylesheets/skeleton.css">
-	<link rel="stylesheet" href="skeleton/stylesheets/layout.css">
+        <link rel="stylesheet" href="/skeleton/stylesheets/base.css">
+	<link rel="stylesheet" href="/skeleton/stylesheets/skeleton.css">
+	<link rel="stylesheet" href="/skeleton/stylesheets/layout.css">
+            
+            <style type="text/css">
+            
+            #nav ul{
+            margin: 0; padding: 0;
+            float: left;
+           display: block;
+           border-top: 2px solid grey;
+           border-bottom: 2px solid grey;
+           width: 100%;;
+            }
+         
+        #nav ul li{
+            display: inline;
+            }
+         
+        #nav ul li a{
+            float: left; text-decoration: none;
+            padding: 10.5px 11px;
+           }
+            
+            th {
+               font-weight: bold;
+               padding: 10px;
+            }
+            
+            b {
+                font-weight: bold;
+            }
+            
+            i {
+               font-style: italic; 
+            }
+            
+            #footer {
+                border-top: 2px solid grey;
+                padding: 10px; 
+            }
+            
+            </style>
+            
 <!--<style type="text/css" media="all">
 
 
