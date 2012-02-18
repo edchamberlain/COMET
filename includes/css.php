@@ -1,6 +1,10 @@
 
+<link rel="stylesheet" href="skeleton/stylesheets/base.css">
+	<link rel="stylesheet" href="skeleton/stylesheets/skeleton.css">
+	<link rel="stylesheet" href="skeleton/stylesheets/layout.css">
+<!--<style type="text/css" media="all">
 
-<style type="text/css" media="all">
+
 body {
 background-color: #999999;
 font-size:12px;
@@ -129,4 +133,5 @@ table.record tbody tr {
           WORD-BREAK:BREAK-ALL; 
 }
 
-</style>
+</style> -->
+

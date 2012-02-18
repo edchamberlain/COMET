@@ -1,5 +1,7 @@
 <div id="header">
-<p>header code inc above nav links in includes/header.php, css links in includes/css.php</p>
+    <h2>COMET RDF publishing site</h2>
+    
+<p>header code inc. nav links in includes/header.php, css links in includes/css.php</p>
 </div>
 
 <div id="nav">

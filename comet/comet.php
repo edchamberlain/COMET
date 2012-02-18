@@ -261,7 +261,7 @@ public function  genHTMLHeader() {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
     <title>library open data site</title>';
       include 'includes/css.php'; 
-    
+     
      print '</head><body class="home"><div class="container">';
      include 'includes/header.php'; 
 }
@@ -290,7 +290,7 @@ public function  genHTMLHeader() {
           print "<hr/>";
           
            print "<h5>SPARQL used behind this page:</h5>";
-           print '<form id="sparql-form" action="http://data.lib.cam.ac.uk/endpoint.php"  enctype="application/x-www-form-urlencoded" method="get">';
+           print '<form id="sparql-form" action="endpoint.php"  enctype="application/x-www-form-urlencoded" method="get">';
            print '<textarea id="query" name="query" class="embeddedQuery" rows="2" cols="30" 1000px style="border: 2px solid #cccccc; height: 120px; width: 450px">';
            print "PREFIX  dc: <http://purl.org/dc/terms/>
         CONSTRUCT {
@@ -311,14 +311,12 @@ public function  genHTMLHeader() {
 
 # Generate HTML for main body page ...     
 public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
-     print '<div class="grid_20">';
+  print '<div class="container">';
     
       if ($result) {
         
 
-         
-          print '<div class="grid_15 alpha"><br/>';
-          
+
           print "<table class=\"record \">";
          
           print "<tr><th colspan=\"2\">Entries for <a href='$uri'>$uri</a> as a subject:</th></tr>";
@@ -376,7 +374,7 @@ public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
           print "<hr/>";
           
            print "<h5>SPARQL used behind this page:</h5>";
-           print '<form id="sparql-form" action="http://data.lib.cam.ac.uk/endpoint.php"  enctype="application/x-www-form-urlencoded" method="get">';
+           print '<form id="sparql-form" action="endpoint.php"  enctype="application/x-www-form-urlencoded" method="get">';
            print '<textarea id="query" name="query" class="embeddedQuery" rows="2" cols="30" 1000px style="border: 2px solid #cccccc; height: 120px; width: 450px">';
            print "SELECT * WHERE { '$uri' ?p ?o . }";
            print '</textarea>';
@@ -398,7 +396,7 @@ public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
                         // Pull out UL Voyager bib_id for other services ...
                     preg_match('/\d+$/', $uri, $matches);
                     $bibid=$matches[0];
-                      
+                      /*
                       if ($bib=='Y') {
                       print "<p><b>Non-RDF formats for this record:</b></p><ul>";
                       print '<li><a href="http://www.lib.cam.ac.uk/api/voyager/bibData.cgi?database=cambrdgedb&bib_id='.$bibid.'&format=xml">XML (not RDF)</a></li>';
@@ -413,6 +411,7 @@ public function  genHTMLRecordDisplay($result, $uri, $store, $triples) {
                        print "<p><b><a href=\"/results.php?uri=$uri\">View entries related to this</a></b></p>";
                        print "</div>"; // end grid_5 omega
                        }
+                      */
            
       } else {
           print "<h1>404 response</h1><p><strong>No entries found for $uri</strong></p>";
