@@ -1,4 +1,3 @@
-
 Comet project complete codebase
 ----------------------------
 ---------------------------
@@ -6,11 +5,11 @@ Ed Chamberlain, Cambridge University Library 2011 - licensed under the GPL.
 Code is provided 'as is' with no firm assurance of support or functionality. May need substantial alteration to work
 
 
-Perl based Marc21 to RDF triples conversion utility
+Perl based Marc21 analysis tool
 -----------------------------------------------------
 - Found in /analysis. A standalone tool designed to analyse Marc21 records and assess origin through identifier field codes. See the readme file in that directory for more details.
 
-Perl based Arc21 to RDF publishing tool
+Perl based Marc21 to RDF publishing tool
 ---------------------------------------------------
  -Found in /conversion. features extensive CSV based customization for vocal and graph output. See the readme file in that directory for more details. Work by Huw Jones
 
